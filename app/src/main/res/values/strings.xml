@@ -9,4 +9,7 @@
     <string name="contact_details">Contact Details</string>
     <string name="edit_contact">Edit Contact</string>
     <string name="update">Update</string>
+    <string name="name">Name</string>
+    <string name="_012345678">012345678</string>
+    <string name="remove_contact">Remove Contact</string>
 </resources>

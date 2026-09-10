@@ -34,13 +34,13 @@
         android:layout_marginBottom="3dp"
         android:text="Name"
         android:textColor="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/nameEdit"
+        app:layout_constraintBottom_toTopOf="@+id/nameAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/nameEdit"
+        android:id="@+id/nameAdd"
         android:layout_width="363dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -48,7 +48,7 @@
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
@@ -64,7 +64,7 @@
         android:layout_marginBottom="4dp"
         android:text="@string/number"
         android:textColor="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/numberEdit"
+        app:layout_constraintBottom_toTopOf="@+id/numberAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
 
 
     <EditText
-        android:id="@+id/numberEdit"
+        android:id="@+id/numberAdd"
         android:layout_width="363dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -80,13 +80,13 @@
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="number|numberSigned"
-        android:text="Number"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numberLabel" />
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/addButton"
         android:layout_width="147dp"
         android:layout_height="89dp"
         android:layout_marginStart="160dp"
@@ -96,6 +96,6 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/numberAdd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

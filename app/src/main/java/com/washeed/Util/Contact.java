@@ -1,6 +1,9 @@
 package com.washeed.Util;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
+//    private static final long serialVersionUID = 1L;
     private String name;
     private String number;
 
@@ -9,19 +12,11 @@ public class Contact {
         this.number=number;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
+    public void setNumber(String number) {this.number = number;}
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+    public String getName() {return name;}
+    public String getNumber() {return number;}
 
-    public String getName() {
-        return name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
+    public String toString() {return name + " - " + number;}
 }

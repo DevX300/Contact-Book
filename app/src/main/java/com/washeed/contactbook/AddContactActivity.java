@@ -1,12 +1,20 @@
 package com.washeed.contactbook;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.washeed.Util.Contact;
+import com.washeed.Util.FileManager;
+
+import java.io.IOException;
 
 public class AddContactActivity extends AppCompatActivity {
 
@@ -19,6 +27,25 @@ public class AddContactActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        Button addButton = findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText getNameText = findViewById(R.id.nameAdd);
+                EditText getNumberText = findViewById(R.id.numberAdd);
+
+                String name = getNameText.getText().toString().trim();  //gets the text from the field makes it into string
+                String number = getNumberText.getText().toString().trim();
+                Contact addContact = new Contact(name, number);
+                FileManager.contacts.add(addContact);
+                try {
+                    FileManager.saveFile(AddContactActivity.this, FileManager.contacts);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                finish();
+            }
         });
     }
 }
