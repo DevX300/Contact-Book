@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.washeed.Util.Contact;
-import com.washeed.Util.FileManager;
 
 import java.util.ArrayList;
 
@@ -34,11 +33,7 @@ public class contactAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(
-                    R.layout.contact_list_item,
-                    parent,
-                    false
-            );
+            convertView = inflater.inflate(R.layout.contact_list_item, parent, false);
         }
         TextView name = convertView.findViewById(R.id.textViewName);
         TextView phone = convertView.findViewById(R.id.textViewNumber);

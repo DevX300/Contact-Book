@@ -1,5 +1,8 @@
 package com.washeed.contactbook;
 
+import static android.app.ProgressDialog.show;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.washeed.Util.FileManager;
 
 import java.io.IOException;
@@ -53,20 +58,33 @@ public class ContactDetailActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         //remove button functionality
         Button removeButton = findViewById(R.id.removeButton);
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getPosition != -1) {
-                    FileManager.contacts.remove(getPosition);
-                    try {
-                        FileManager.saveFile(ContactDetailActivity.this, FileManager.contacts);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    finish();
-                }
+                new MaterialAlertDialogBuilder(ContactDetailActivity.this)
+                        .setTitle("Remove Contact")
+                        .setMessage("Would You Like to remove this Contact?")
+                        .setNegativeButton("Cancel", null)
+                        .setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (getPosition != -1) {
+                                    FileManager.contacts.remove(getPosition);
+                                    try {
+                                        FileManager.saveFile(ContactDetailActivity.this, FileManager.contacts);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    finish();
+                                }
+                            }
+                        })
+                        .show();
             }
         });
     }

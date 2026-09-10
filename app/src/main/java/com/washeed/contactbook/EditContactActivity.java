@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.washeed.Util.Contact;
 import com.washeed.Util.FileManager;
 
@@ -48,22 +49,30 @@ public class EditContactActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText getNameText = findViewById(R.id.nameEdit);
                 EditText getNumberText = findViewById(R.id.numberEdit);
-
                 String name = getNameText.getText().toString().trim();  //update the text from the field makes it into string
                 String number = getNumberText.getText().toString().trim();
-                if (getPosition!= -1){
-                    Contact updateContact = FileManager.contacts.get(getPosition);   // stores the index of the object clicked
-                    updateContact.setName(name);
-                    updateContact.setNumber(number);    //updates the list
-                    try {
-                        FileManager.saveFile(EditContactActivity.this, FileManager.contacts);   // update and save
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                if(name.isEmpty() && number.isEmpty()){
+                    new MaterialAlertDialogBuilder(EditContactActivity.this)
+                            .setTitle("Error")
+                            .setMessage("Empty Field is invalid")
+                            .setPositiveButton("Ok", null)
+                            .show();
+                }
+                if (!name.isEmpty() && !number.isEmpty()){
+                    if (getPosition!= -1){
+                        Contact updateContact = FileManager.contacts.get(getPosition);   // stores the index of the object clicked
+                        updateContact.setName(name);
+                        updateContact.setNumber(number);    //updates the list
+                        try {
+                            FileManager.saveFile(EditContactActivity.this, FileManager.contacts);   // update and save
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Intent intent = new Intent(EditContactActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);  // clears the stack and makes sure the main activity is launched
+                        startActivity(intent);
+                        finish();
                     }
-                    Intent intent = new Intent(EditContactActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);  // clears the stack and makes sure the main activity is launched
-                    startActivity(intent);
-                    finish();
                 }
             }
         });
